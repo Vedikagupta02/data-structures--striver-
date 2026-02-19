@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int countBinarySubstrings(string s) {
+
+        vector<int>grouping;
+        int cnt=1;
+
+        for(int i=0;i<s.length()-1;i++){
+            if(s[i]==s[i+1]){
+                cnt++;
+            }
+            else{
+                grouping.push_back(cnt);
+                cnt=1;
+            }
+        }
+
+        grouping.push_back(cnt);
+
+        int total=0;
+
+        for(int i=0;i<grouping.size()-1;i++){
+            total+=min(grouping[i], grouping[i+1]);
+        }
+        return total;
+
+    }
+};
