@@ -1,0 +1,33 @@
+int NthRoot(int n, int m) {
+  // Write your code here.
+
+  int low=1;
+  int high=m;
+
+  while(low<=high){
+    int mid=(high+low)/2;
+
+    long long int ans=1;
+
+    for(int times=1;times<=n;times++){
+      ans=ans*mid;
+
+      if(ans>m){
+        break;
+      }
+    }
+
+    
+    if(ans==m){
+      return mid;
+    }
+    else if(ans>m){
+      high=mid-1;
+    }
+    else{
+      low=mid+1;
+    }
+
+  }
+  return -1;
+}
