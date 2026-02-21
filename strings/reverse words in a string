@@ -1,0 +1,39 @@
+class Solution {
+public:
+    string reverseWords(string s) {
+        int n=s.size();
+        string ans="";
+        reverse(s.begin(), s.end());
+
+        int i=0;
+        while(i<n){
+
+            while(i<n && s[i]==' '){
+                i++;
+            }
+
+            if(i>=n){
+                break;
+            }
+            string word="";
+            int j=i;
+            while(j<n&&s[j]!=' '){
+                word+=s[j];
+                j++;
+
+            }
+
+            reverse(word.begin(), word.end());
+            if(!ans.empty()){
+                ans+=" ";
+            }
+            ans+=word;
+            
+            i=j;
+
+        }
+        return ans;
+        
+        
+    }
+};
