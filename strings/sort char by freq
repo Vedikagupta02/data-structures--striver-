@@ -1,0 +1,26 @@
+class Solution {
+
+public:
+    string frequencySort(string s) {
+
+        int n=s.size();
+        unordered_map<char, int>mp;
+
+        for(char ch:s){
+            mp[ch]++;
+        }
+
+        sort(s.begin(), s.end(), [&](char c1, char c2){
+            if(mp[c1]==mp[c2]){
+                return c1<c2;
+            }
+            return mp[c1]>mp[c2];
+
+        });
+
+        return s;
+
+        
+        
+    }
+};
