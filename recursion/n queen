@@ -1,0 +1,72 @@
+
+class Solution {
+
+private:
+    bool cando(int n, int i, int j, vector<string>&vec){
+
+        for(int k=0;k<=i-1;k++){
+            if(vec[k][j]=='Q'){
+                return false;
+
+            }
+        }
+
+        int u=i-1;
+        int v=j-1;
+
+        while(u>=0 && v>=0){
+            if(vec[u][v]=='Q'){
+                return false;
+            }
+
+            u--;
+            v--;
+        }
+
+        int s=i-1;
+        int t=j+1;
+
+        while(s>=0 && t<n){
+            if(vec[s][t]=='Q'){
+                return false;
+            }
+
+            s--;
+            t++;
+        }
+
+        return true;
+    }
+    void solve(int n, int i, vector<string>&vec, vector<vector<string>>&board){
+
+        if(i==n){
+            board.push_back(vec);
+            return;
+            
+        }
+
+        for(int j=0;j<n;j++){
+            if(cando(n, i, j, vec)){
+                vec[i][j]='Q';
+                solve(n, i+1, vec, board);
+                vec[i][j]='.';
+
+
+            }
+        }
+    }
+public:
+    vector<vector<string>> solveNQueens(int n) {
+
+        vector<string> vec(n, string(n, '.'));
+        vector<vector<string>>board;
+
+        solve(n, 0, vec, board);
+
+        return board;
+        
+
+
+        
+    }
+};
