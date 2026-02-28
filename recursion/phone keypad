@@ -1,0 +1,34 @@
+class Solution {
+private:
+    void solve(string &digits, int n, int i, string&op, vector<string>&ans, vector<string>&codes){
+
+        if(i==n){
+            if(!op.empty()){
+            ans.push_back(op);
+            }
+            return;
+        }
+
+        char ch=digits[i];
+        int x=ch-'0';
+
+        for(int j=0;codes[x][j]!='\0';j++){
+            op+=codes[x][j];
+            solve(digits, n, i+1,op, ans, codes);
+            op.pop_back();
+        }
+    }
+public:
+    vector<string> letterCombinations(string digits) {
+        
+        int n=digits.length();
+
+        vector<string>ans;
+        string op="";
+
+        vector<string>codes={"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        
+        solve(digits, n, 0, op, ans, codes);
+        return ans;
+    }
+};
