@@ -1,0 +1,29 @@
+class Solution {
+private:
+    void solve(int n, string op, vector<string>&res, int open, int close){
+
+        if(close==n){
+            res.push_back(op);
+            return;
+        }
+
+        if(open<n){
+            solve(n, op+'(', res, open+1, close);
+        }
+
+        if(close<open){
+            solve(n, op+')', res, open, close+1);
+        }
+    }
+public:
+    vector<string> generateParenthesis(int n) {
+        
+        vector<string>res;
+        string op="";
+        int close=0;
+        int open=0;
+
+        solve(n, op, res, open, close);
+        return res;
+    }
+};
