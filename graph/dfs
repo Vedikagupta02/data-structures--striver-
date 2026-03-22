@@ -1,0 +1,25 @@
+class Solution {
+  private:
+  void helper(vector<vector<int>>& adj, vector<int>&res, vector<int>&vis, int src){
+      vis[src]=1;
+      res.push_back(src);
+      
+      for(auto it:adj[src]){
+          if(vis[it]==0){
+              helper(adj, res, vis, it);
+          }
+      }
+      
+      
+  }
+  public:
+    vector<int> dfs(vector<vector<int>>& adj) {
+        // Code here
+        int n=adj.size();
+        vector<int>res;
+        vector<int>vis(n,0);
+        
+        helper(adj, res, vis, 0);
+        return res;
+    }
+};
